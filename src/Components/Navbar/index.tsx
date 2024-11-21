@@ -12,7 +12,9 @@ const Navbar = () => {
           </li>
         </ul>
         <ul className="flex">
-          <li className="p-4">{NAVBAR.MENU}</li>
+          <li className="p-4">
+            <Link to="/menu">{NAVBAR.MENU}</Link>
+          </li>
           <li className="p-4">
             <Link to="/about">{NAVBAR.ABOUT}</Link>
           </li>
