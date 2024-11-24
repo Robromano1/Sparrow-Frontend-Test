@@ -15,3 +15,22 @@ export const MENU = {
   DELIVERY: "Delivery",
   MENU_TITLE: "Menu",
 };
+
+export const HTTP_METHODS = {
+  GET: "GET",
+  POST: "POST",
+  PUT: "PUT",
+  DELETE: "DELETE",
+};
+
+export const MENU_OPTIONS = {
+  SIZE: "Size",
+  EXTRA_TOPPINGS: "Extra Toppings",
+  EXCLUDE_TOPPINGS: "Exlude Toppings",
+};
+
+export const SIZE_OPTIONS = {
+  SMALL: "Small",
+  MEDIUM: "Medium",
+  LARGE: "Large",
+};
