@@ -25,8 +25,9 @@ export const HTTP_METHODS = {
 
 export const MENU_OPTIONS = {
   SIZE: "Size",
+  TOPPINGS: "Toppings",
   EXTRA_TOPPINGS: "Extra Toppings",
-  EXCLUDE_TOPPINGS: "Exlude Toppings",
+  EXCLUDE_TOPPINGS: "Exclude Toppings",
 };
 
 export const SIZE_OPTIONS = {

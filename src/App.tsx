@@ -6,6 +6,7 @@ import Root from "./Routes/Root";
 import Navbar from "./Components/Navbar";
 import About from "./Pages/About";
 import Menu from "./Pages/Menu";
+import { CartProvider } from "./Pages/Cart/CartProvider";
 
 function Layout() {
   return (
@@ -30,7 +31,11 @@ const router = createBrowserRouter([
       },
       {
         path: "/menu",
-        element: <Menu />,
+        element: (
+          <CartProvider>
+            <Menu />
+          </CartProvider>
+        ),
       },
     ],
   },

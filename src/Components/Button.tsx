@@ -5,6 +5,7 @@ interface ButtonProps {
   children: ReactNode;
   disabled?: boolean;
   className?: string;
+  tabIndex?: number;
 }
 
 const Button: FC<ButtonProps> = ({
@@ -12,9 +13,15 @@ const Button: FC<ButtonProps> = ({
   children,
   disabled,
   className,
+  tabIndex,
 }): ReactElement => {
   return (
-    <button onClick={onClick} disabled={disabled} className={className}>
+    <button
+      onClick={onClick}
+      disabled={disabled}
+      className={className}
+      tabIndex={tabIndex}
+    >
       {children}
     </button>
   );
