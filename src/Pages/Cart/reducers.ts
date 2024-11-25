@@ -3,10 +3,12 @@ import { cartInitialState, InitialCartState } from "./cartContext";
 enum ActionType {
   ADD_TO_CART = "ADD_TO_CART",
   CHECKOUT = "CHECKOUT",
+  CANCEL = "CANCEL",
 }
 
 interface ActionPayload {
   pizzaName: string;
+  description: string;
   extraToppings: string[];
   excludedToppings: string[];
   size: string;
@@ -37,16 +39,17 @@ export const cartReducer = (
       return {
         ...state,
         pizzaName: action.payload.pizzaName,
+        description: action.payload.description,
         extraToppings: action.payload.extraToppings,
         excludedToppings: action.payload.excludedToppings,
         size: action.payload.size,
         checkout: true,
       };
-    // case "CHECKOUT":
-    //   return {
-    //     ...state,
-    //     checkout: action.payload.checkout,
-    //   };
+    case "CANCEL":
+      return {
+        ...state,
+        checkout: false,
+      };
     default:
       return state;
   }

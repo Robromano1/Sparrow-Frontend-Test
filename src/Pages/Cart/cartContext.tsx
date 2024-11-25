@@ -3,6 +3,7 @@ import { createContext, useContext /*useReducer*/ } from "react";
 
 export interface InitialCartState {
   pizzaName: string;
+  description: string;
   extraToppings: string[];
   excludedToppings: string[];
   size: string;
@@ -12,6 +13,7 @@ export interface InitialCartState {
 
 export const cartInitialState: InitialCartState = {
   pizzaName: "",
+  description: "",
   extraToppings: [],
   excludedToppings: [],
   size: "",
@@ -21,6 +23,7 @@ export const cartInitialState: InitialCartState = {
 
 export enum ActionType {
   ADD_TO_CART = "ADD_TO_CART",
+  CANCEL = "CANCEL",
 }
 
 interface Action {

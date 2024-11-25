@@ -13,6 +13,7 @@ import { SpecialtyPizzaContext } from "./context";
 import { useCartContext } from "../Cart/cartContext";
 import { ActionType } from "../Cart/cartContext";
 import Sidebar from "../../Components/Sidebar";
+import CheckoutMain from "../Checkout/CheckoutMain";
 //import { HiringFrontendTakeHomePizzaSize } from "../../types";
 
 interface SelectedToppings {
@@ -117,10 +118,10 @@ const Menu = () => {
       type: ActionType.ADD_TO_CART,
       payload: {
         pizzaName: pizza.name,
+        description: pizza.description,
         extraToppings,
         excludedToppings,
         size: pizzaSize,
-        checkout: true,
       },
     });
   };
@@ -148,6 +149,14 @@ const Menu = () => {
     // console.log(excludedToppings);
     // console.log(selectedToppings);
     // console.log(pizzaSize);
+  }, [state]);
+
+  useEffect(() => {
+    if (state.checkout) {
+      document.body.classList.add("overflow-hidden");
+    } else {
+      document.body.classList.remove("overflow-hidden");
+    }
   }, [state]);
 
   return (
@@ -272,7 +281,9 @@ const Menu = () => {
           </div>
         </Modal>
       )}
-      <Sidebar />
+      <Sidebar>
+        <CheckoutMain />
+      </Sidebar>
     </>
   );
 };
