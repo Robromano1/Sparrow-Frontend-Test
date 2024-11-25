@@ -6,6 +6,7 @@ export interface InitialCartState {
   extraToppings: string[];
   excludedToppings: string[];
   size: string;
+  checkout: boolean;
   // price: number;
 }
 
@@ -14,6 +15,7 @@ export const cartInitialState: InitialCartState = {
   extraToppings: [],
   excludedToppings: [],
   size: "",
+  checkout: false,
   // price: 0,
 };
 

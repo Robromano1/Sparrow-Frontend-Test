@@ -35,3 +35,7 @@ export const SIZE_OPTIONS = {
   MEDIUM: "Medium",
   LARGE: "Large",
 };
+
+export const CHECKOUT = {
+  CHECKOUT: "Checkout",
+};

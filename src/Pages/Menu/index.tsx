@@ -12,7 +12,8 @@ import { SpecialtyPizza } from "../../types";
 import { SpecialtyPizzaContext } from "./context";
 import { useCartContext } from "../Cart/cartContext";
 import { ActionType } from "../Cart/cartContext";
-import { HiringFrontendTakeHomePizzaSize } from "../../types";
+import Sidebar from "../../Components/Sidebar";
+//import { HiringFrontendTakeHomePizzaSize } from "../../types";
 
 interface SelectedToppings {
   [toppingName: string]: string | undefined;
@@ -119,6 +120,7 @@ const Menu = () => {
         extraToppings,
         excludedToppings,
         size: pizzaSize,
+        checkout: true,
       },
     });
   };
@@ -270,6 +272,7 @@ const Menu = () => {
           </div>
         </Modal>
       )}
+      <Sidebar />
     </>
   );
 };
