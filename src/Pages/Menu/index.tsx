@@ -5,6 +5,7 @@ import MenuHeader from "./MenuHeader";
 import Modal from "../../Components/Modal";
 import Toppings from "./Toppings";
 import Button from "../../Components/Button";
+import Radio from "../../Components/Radio";
 import { useCustomFetch } from "../../Hooks/CustomFetch";
 import { MENU_OPTIONS, SIZE_OPTIONS } from "../../Constants";
 import { SpecialtyPizza } from "../../types";
@@ -32,7 +33,7 @@ const Menu = () => {
   const [selectedToppings, setSelectedToppings] = useState<SelectedToppings>(
     {}
   );
-  // const [pizzaSize, setPizzaSize] = useState("");
+  const [pizzaSize, setPizzaSize] = useState("");
   // const [isLoading, setIsLoading] = useState(false);
   // const [error, setError] = useState<unknown | null>(null);
 
@@ -75,6 +76,7 @@ const Menu = () => {
 
   const handleCloseModal = () => {
     setModalOpen(false);
+    setPizzaSize("");
   };
 
   const handleExtraToppings = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -95,6 +97,11 @@ const Menu = () => {
     console.log("HANDLING NORMAL TOPPINGS");
     const topping = e.target.value;
     setSelectedToppings({ ...selectedToppings, [topping]: "normal" });
+  };
+
+  const handlePizzaSize = (e: React.ChangeEvent<HTMLInputElement>) => {
+    console.log(e.target);
+    setPizzaSize(e.target.value);
   };
 
   // const handleSelectedToppings = (
@@ -119,7 +126,8 @@ const Menu = () => {
     console.log(extraToppings);
     console.log(excludedToppings);
     console.log(selectedToppings);
-  }, [extraToppings, selectedToppings]);
+    console.log(pizzaSize);
+  }, [extraToppings, selectedToppings, pizzaSize]);
 
   return (
     <>
@@ -162,18 +170,45 @@ const Menu = () => {
             <div>
               <h3 className="font-bold mb-4">{MENU_OPTIONS.SIZE}</h3>
               <div className="flex">
-                <h4 className="shadow-md rounded-lg hover:cursor-pointer hover:border hover:border-black p-2 w-40 mr-4 hover:shadow-xl flex items-center justify-between px-4">
-                  {SIZE_OPTIONS.SMALL}
-                  <p className="text-xs">{`$${selectedPizza.price.small}`}</p>
-                </h4>
-                <h4 className="shadow-md rounded-lg hover:cursor-pointer hover:border hover:border-black p-2 w-40 mr-4 flex items-center justify-between px-4">
+                {/* <h4 className="shadow-md rounded-lg hover:cursor-pointer hover:border hover:border-black p-2 w-40 mr-4 hover:shadow-xl flex items-center justify-between px-4"> */}
+                {/* {SIZE_OPTIONS.SMALL}
+                  <p className="text-xs">{`$${selectedPizza.price.small}`}</p> */}
+                <Radio
+                  quantity={SIZE_OPTIONS.SMALL}
+                  className="flex items-center justify-between hover:cursor-pointer hover:border hover:border-black p-2 w-40 peer-checked/small:border peer-checked/small:border-black peer-checked/small:bg-black peer-checked/small:text-white shadow-md rounded-lg px-4 mr-4"
+                  additionalText={`$${selectedPizza.price.small}`}
+                  onChangeHandler={handlePizzaSize}
+                  checked={pizzaSize === "small"}
+                  type="small"
+                  name="small"
+                />
+                {/* </h4> */}
+                {/* <h4 className="shadow-md rounded-lg hover:cursor-pointer hover:border hover:border-black p-2 w-40 mr-4 flex items-center justify-between px-4">
                   {SIZE_OPTIONS.MEDIUM}
                   <p className="text-xs">{`$${selectedPizza.price.medium}`}</p>
-                </h4>
-                <h4 className="shadow-md rounded-lg hover:cursor-pointer hover:border hover:border-black p-2 w-40 mr-4 flex items-center justify-between px-4">
+                </h4> */}
+                <Radio
+                  quantity={SIZE_OPTIONS.MEDIUM}
+                  className="flex items-center justify-between hover:cursor-pointer hover:border hover:border-black p-2 w-40 peer-checked/medium:border peer-checked/medium:border-black peer-checked/medium:bg-black peer-checked/medium:text-white shadow-md rounded-lg px-4 mr-4"
+                  additionalText={`$${selectedPizza.price.medium}`}
+                  onChangeHandler={handlePizzaSize}
+                  checked={pizzaSize === "medium"}
+                  type="medium"
+                  name="medium"
+                />
+                {/* <h4 className="shadow-md rounded-lg hover:cursor-pointer hover:border hover:border-black p-2 w-40 mr-4 flex items-center justify-between px-4">
                   {SIZE_OPTIONS.LARGE}
                   <p className="text-xs">{`$${selectedPizza.price.large}`}</p>
-                </h4>
+                </h4> */}
+                <Radio
+                  quantity={SIZE_OPTIONS.LARGE}
+                  className="flex items-center justify-between hover:cursor-pointer hover:border hover:border-black p-2 w-40 peer-checked/large:border peer-checked/large:border-black peer-checked/large:bg-black peer-checked/large:text-white shadow-md rounded-lg px-4 mr-4"
+                  additionalText={`$${selectedPizza.price.large}`}
+                  onChangeHandler={handlePizzaSize}
+                  checked={pizzaSize === "large"}
+                  type="large"
+                  name="large"
+                />
               </div>
             </div>
             <hr className="h-px my-8 bg-gray-200 border-0 dark:bg-gray-700"></hr>
@@ -198,20 +233,6 @@ const Menu = () => {
                 </ul>
               </div>
             </div>
-            <hr className="h-px my-8 bg-gray-200 border-0 dark:bg-gray-700"></hr>
-            {/* <div>
-              <h3 className="font-bold mb-4">
-                {MENU_OPTIONS.EXCLUDE_TOPPINGS}
-              </h3> */}
-            {/* <Toppings toppings={selectedPizza?.toppings} /> */}
-            {/* <div className="flex flex-1">
-                <ul className="grid grid-cols-4 mt-4 gap-2">
-                  {selectedPizza.toppings.map((topping, index) => (
-                    <Toppings topping={topping} index={index} type={"Remove"} />
-                  ))}
-                </ul>
-              </div>
-            </div> */}
             <hr className="h-px my-8 bg-gray-200 border-0 dark:bg-gray-700"></hr>
             <div className="flex justify-between">
               <div className="bg-black text-white p-2 rounded-full mt-12 w-1/12 flex justify-center">

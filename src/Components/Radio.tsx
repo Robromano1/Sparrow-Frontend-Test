@@ -5,39 +5,42 @@ interface SelectedToppings {
 }
 
 interface PizzaProps {
-  topping: string;
-  type: string;
-  id: number;
-  selected: SelectedToppings;
-  quantity: string;
+  checked: boolean;
+  className: string;
   onChangeHandler: ChangeEventHandler<HTMLInputElement>;
+  selected?: SelectedToppings;
+  name?: string;
+  type?: string;
+  id?: number;
+  quantity?: string;
+  additionalText?: string;
 }
 
 const Radio: FC<PizzaProps> = ({
-  topping,
+  name,
   id,
   type,
-  selected,
   quantity,
+  checked,
+  className,
+  additionalText,
   onChangeHandler,
 }) => {
   return (
     <>
       <input
         type="radio"
-        id={`${topping}-${id}-${type}`}
-        name={`${topping}-${type}`}
+        id={`${name}-${id}-${type}`}
+        name={`${name}-${type}`}
         role="radio"
-        className="peer hidden"
-        value={topping}
+        className={`peer/${type} hidden`}
+        value={name}
         onChange={onChangeHandler}
-        checked={selected && selected[topping] === type}
+        checked={checked}
       />
-      <label
-        htmlFor={`${topping}-${id}-${type}`}
-        className="inline-flex items-center border border-gray-300 rounded-l-lg hover:cursor-pointer hover:border hover:border-black p-2 w-20 hover:shadow-xl px-4 peer-checked:border peer-checked:border-black"
-      >
-        <div>{quantity}</div>
+      <label htmlFor={`${name}-${id}-${type}`} className={className}>
+        <span>{quantity}</span>
+        {additionalText && <p className="text-xs">{additionalText}</p>}
       </label>
     </>
   );
