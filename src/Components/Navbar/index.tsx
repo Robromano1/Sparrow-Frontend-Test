@@ -1,20 +1,27 @@
 import { Link } from "react-router-dom";
 
+import { NAVBAR } from "../../Constants";
+
 const Navbar = () => {
   return (
     <>
-      <div className="border border-1 border-red-500 flex flex-1 justify-between">
-        <ul className="flex align-middle ml-4">
+      <div className="flex flex-1 justify-between mt-4">
+        <ul className="flex align-middle ml-14">
           <li className="p-4">
-            <Link to="/">Logo</Link>
+            <Link to="/">{NAVBAR.LOGO}</Link>
           </li>
-          <li className="p-4">
-            <Link to="/about">About</Link>
-          </li>
-          <li className="p-4">Menu</li>
         </ul>
-        <ul className="align-middle flex mr-4">
-          <li className="p-4">Login</li>
+        <ul className="flex">
+          <li className="p-4">
+            <Link to="/menu">{NAVBAR.MENU}</Link>
+          </li>
+          <li className="p-4">
+            <Link to="/about">{NAVBAR.ABOUT}</Link>
+          </li>
+          <li className="p-4">{NAVBAR.LOCATION}</li>
+        </ul>
+        <ul className="align-middle flex mr-14">
+          <li className="p-4">{NAVBAR.LOGIN}</li>
         </ul>
       </div>
     </>

@@ -1,8 +1,12 @@
+// React imports
 import { createBrowserRouter, RouterProvider, Outlet } from "react-router-dom";
 
+// Internal imports
 import Root from "./Routes/Root";
 import Navbar from "./Components/Navbar";
 import About from "./Pages/About";
+import Menu from "./Pages/Menu";
+import { CartProvider } from "./Pages/Cart/CartProvider";
 
 function Layout() {
   return (
@@ -19,11 +23,23 @@ const router = createBrowserRouter([
     children: [
       {
         path: "/",
-        element: <Root />,
+        element: (
+          <CartProvider>
+            <Root />{" "}
+          </CartProvider>
+        ),
       },
       {
         path: "/about",
         element: <About />,
+      },
+      {
+        path: "/menu",
+        element: (
+          <CartProvider>
+            <Menu />
+          </CartProvider>
+        ),
       },
     ],
   },
