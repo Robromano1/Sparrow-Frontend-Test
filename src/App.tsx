@@ -23,7 +23,11 @@ const router = createBrowserRouter([
     children: [
       {
         path: "/",
-        element: <Root />,
+        element: (
+          <CartProvider>
+            <Root />{" "}
+          </CartProvider>
+        ),
       },
       {
         path: "/about",

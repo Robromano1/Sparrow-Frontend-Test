@@ -12,6 +12,7 @@ import { SpecialtyPizza } from "../../types";
 import { SpecialtyPizzaContext } from "./context";
 import { useCartContext } from "../Cart/cartContext";
 import { ActionType } from "../Cart/cartContext";
+import { HiringFrontendTakeHomePizzaSize } from "../../types";
 
 interface SelectedToppings {
   [toppingName: string]: string | undefined;
@@ -104,6 +105,24 @@ const Menu = () => {
     setPizzaSize(e.target.value);
   };
 
+  const handleAddToCart = (
+    e: React.MouseEvent<HTMLButtonElement>,
+    pizza: SpecialtyPizza
+  ) => {
+    console.log("ADDING TO CART");
+    console.log(e.target);
+    setModalOpen(false);
+    dispatch({
+      type: ActionType.ADD_TO_CART,
+      payload: {
+        pizzaName: pizza.name,
+        extraToppings,
+        excludedToppings,
+        size: pizzaSize,
+      },
+    });
+  };
+
   // const handleSelectedToppings = (
   //   e: React.ChangeEvent<HTMLInputElement>,
   //   quantity: string
@@ -122,12 +141,12 @@ const Menu = () => {
   // };
 
   useEffect(() => {
-    //console.log(state);
-    console.log(extraToppings);
-    console.log(excludedToppings);
-    console.log(selectedToppings);
-    console.log(pizzaSize);
-  }, [extraToppings, selectedToppings, pizzaSize]);
+    console.log(state);
+    // console.log(extraToppings);
+    // console.log(excludedToppings);
+    // console.log(selectedToppings);
+    // console.log(pizzaSize);
+  }, [state]);
 
   return (
     <>
@@ -239,14 +258,8 @@ const Menu = () => {
                 1
               </div>
               <Button
-                onClick={() =>
-                  dispatch({
-                    type: ActionType.ADD_TO_CART,
-                    payload: {
-                      pizzaName: selectedPizza.name,
-                      extraToppings: ["Sauage", "Pepperoni"],
-                    },
-                  })
+                onClick={(e: React.MouseEvent<HTMLButtonElement>) =>
+                  handleAddToCart(e, selectedPizza)
                 }
                 className="bg-black text-white  p-2 rounded-full mt-12 flex justify-center w-9/12"
                 tabIndex={-1}

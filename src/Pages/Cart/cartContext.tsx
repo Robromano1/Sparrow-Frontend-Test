@@ -4,14 +4,16 @@ import { createContext, useContext /*useReducer*/ } from "react";
 export interface InitialCartState {
   pizzaName: string;
   extraToppings: string[];
-  // excludedToppings: string[];
+  excludedToppings: string[];
+  size: string;
   // price: number;
 }
 
 export const cartInitialState: InitialCartState = {
   pizzaName: "",
   extraToppings: [],
-  // excludedToppings: [],
+  excludedToppings: [],
+  size: "",
   // price: 0,
 };
 

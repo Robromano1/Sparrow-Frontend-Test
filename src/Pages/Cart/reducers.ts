@@ -7,6 +7,8 @@ enum ActionType {
 interface ActionPayload {
   pizzaName: string;
   extraToppings: string[];
+  excludedToppings: string[];
+  size: string;
 }
 
 interface Action {
@@ -25,6 +27,8 @@ export const cartReducer = (
         ...state,
         pizzaName: action.payload.pizzaName,
         extraToppings: action.payload.extraToppings,
+        excludedToppings: action.payload.excludedToppings,
+        size: action.payload.size,
       };
     default:
       return state;
