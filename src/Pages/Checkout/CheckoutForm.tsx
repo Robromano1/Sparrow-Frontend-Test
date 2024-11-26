@@ -6,37 +6,35 @@ import { ActionType } from "../Cart/cartContext";
 import Button from "../../Components/Button";
 
 export type FormData = {
-  order: {
-    locationId: string;
-    items: [
-      {
-        id: string;
-        pizza: {
-          size: string;
-          toppings?: [{ name: string; quantity: string }];
-          toppingExclusions?: string[];
-          quantity: number;
-          totalPrice: number;
-          type: string;
-        };
-      }
-    ];
-    customer: {
-      firstName: string;
-      lastName: string;
-      email: string;
-      deliveryAddress: {
-        street: string;
-        city: string;
-        state: string;
-        zipCode: string;
+  locationId: string;
+  items: [
+    {
+      id: string;
+      pizza: {
+        size: string;
+        toppings?: [{ name: string; quantity: string }];
+        toppingExclusions?: string[];
+        quantity: number;
+        totalPrice: number;
+        type: string;
       };
+    }
+  ];
+  customer: {
+    firstName: string;
+    lastName: string;
+    email: string;
+    deliveryAddress: {
+      street: string;
+      city: string;
+      state: string;
+      zipCode: string;
     };
-    totalAmount: number;
-    paymentMethod: string;
-    creditcardnumber?: number;
-    type: string;
   };
+  totalAmount: number;
+  paymentMethod: string;
+  creditcardnumber?: number;
+  type: string;
 };
 
 type Inputs = {
@@ -83,35 +81,33 @@ const CheckoutForm = () => {
     const { id, excludedToppings, size, quantity, totalPrice, type } = state;
 
     const requestData: FormData = {
-      order: {
-        locationId: "r-romano",
-        items: [
-          {
-            id,
-            pizza: {
-              size,
-              quantity,
-              toppingExclusions: excludedToppings,
-              totalPrice,
-              type,
-            },
-          },
-        ],
-        customer: {
-          firstName,
-          lastName,
-          email,
-          deliveryAddress: {
-            street: address,
-            city,
-            state: locationState,
-            zipCode,
+      locationId: "r-romano",
+      items: [
+        {
+          id,
+          pizza: {
+            size,
+            quantity,
+            toppingExclusions: excludedToppings,
+            totalPrice,
+            type,
           },
         },
-        totalAmount: totalPrice,
-        paymentMethod: "cash",
-        type: "delivery",
+      ],
+      customer: {
+        firstName,
+        lastName,
+        email,
+        deliveryAddress: {
+          street: address,
+          city,
+          state: locationState,
+          zipCode,
+        },
       },
+      totalAmount: totalPrice,
+      paymentMethod: "cash",
+      type: "delivery",
     };
 
     handleSubmitRequest(requestData);
