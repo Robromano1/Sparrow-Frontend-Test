@@ -8,6 +8,7 @@ const Navbar = () => {
       <div className="flex flex-1 justify-between mt-4">
         <ul className="flex align-middle ml-14">
           <li className="p-4">
+            {/* Add image of pizza logo */}
             <Link to="/">{NAVBAR.LOGO}</Link>
           </li>
         </ul>

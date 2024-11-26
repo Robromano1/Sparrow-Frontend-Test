@@ -120,6 +120,9 @@ const CheckoutForm = () => {
   const handleSubmitRequest = (requestData: FormData) => {
     pizzaFetch(url, {
       method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
       body: JSON.stringify(requestData),
     });
   };

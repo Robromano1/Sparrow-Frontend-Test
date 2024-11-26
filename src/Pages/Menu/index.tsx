@@ -182,7 +182,7 @@ const Menu = () => {
             <hr className="h-px my-8 bg-gray-200 border-0 dark:bg-gray-700"></hr>
             <div className="flex justify-between">
               <div className="bg-black text-white p-2 rounded-full mt-12 w-1/12 flex justify-center">
-                1 {/* Add + and - to increment or decrement quantity */}
+                1 {/* Todo: Add + and - to increment or decrement quantity */}
               </div>
               <Button
                 onClick={(e: React.MouseEvent<HTMLButtonElement>) =>
@@ -191,6 +191,7 @@ const Menu = () => {
                 className="bg-black text-white  p-2 rounded-full mt-12 flex justify-center w-9/12"
                 tabIndex={-1}
               >
+                {/* Todo: render price dynamically depending on topping choices and size select */}
                 Add to cart - price
               </Button>
             </div>
