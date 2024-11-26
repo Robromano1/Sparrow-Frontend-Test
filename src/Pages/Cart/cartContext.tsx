@@ -1,29 +1,42 @@
 import { createContext, useContext /*useReducer*/ } from "react";
 //import { cartReducer } from "./reducers";
 
+import {
+  HiringFrontendTakeHomePizzaType,
+  //HiringFrontendTakeHomePizzaSize,
+} from "../../types";
+
 export interface InitialCartState {
+  id: string;
   pizzaName: string;
   description: string;
   extraToppings: string[];
   excludedToppings: string[];
   size: string;
   checkout: boolean;
+  quantity: number;
+  totalPrice: number;
+  type: HiringFrontendTakeHomePizzaType;
   // price: number;
 }
 
 export const cartInitialState: InitialCartState = {
+  id: "",
   pizzaName: "",
   description: "",
   extraToppings: [],
   excludedToppings: [],
   size: "",
   checkout: false,
-  // price: 0,
+  quantity: 1,
+  totalPrice: 0,
+  type: HiringFrontendTakeHomePizzaType.Specialty,
 };
 
 export enum ActionType {
   ADD_TO_CART = "ADD_TO_CART",
   CANCEL = "CANCEL",
+  RESET_STATE = "RESET_STATE",
 }
 
 interface Action {

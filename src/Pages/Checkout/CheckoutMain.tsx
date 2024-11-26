@@ -3,7 +3,7 @@ import { useCartContext } from "../Cart/cartContext";
 import CheckoutForm from "./CheckoutForm";
 
 const CheckoutMain = () => {
-  const { state, dispatch } = useCartContext();
+  const { state } = useCartContext();
   const { pizzaName, extraToppings, excludedToppings, size, description } =
     state;
 

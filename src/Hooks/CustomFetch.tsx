@@ -1,5 +1,6 @@
 import { useEffect, useState /*useEffect*/ } from "react";
 
+import { FormData } from "../Pages/Checkout/CheckoutForm";
 // import {
 //   HiringFrontendTakeHomeOrderRequest,
 //   HiringFrontendTakeHomeOrderResponse,
@@ -22,13 +23,10 @@ interface ApiResponse {
   data: T | null;
   isLoading: boolean;
   error: unknown | null;
-  //pizzaFetch: (url: string, method: HTTPMethods) => Promise<void>;
+  pizzaFetch: (url: string, options?: ApiOptions) => Promise<void>;
 }
 
-export const useCustomFetch = (
-  url: string,
-  options?: ApiOptions
-): ApiResponse => {
+export const useCustomFetch = (): ApiResponse => {
   const [data, setData] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState<unknown | null>(null);
@@ -49,39 +47,40 @@ export const useCustomFetch = (
   //   fetchData();
   // }, [url]);
 
-  useEffect(() => {
-    const pizzaFetch = async () => {
-      if (url.length) {
-        setIsLoading(true);
+  // useEffect(() => {
 
-        try {
-          //let response;
-          // switch (method) {
-          //   case "GET":
-          //     response = await fetch(url);
-          //     break;
-          //   default:
-          //     response = await fetch(url, {
-          //       method,
-          //       body,
-          //     });
-          //     break;
-          // }
-          const response = await fetch(url, options);
-          const data = await response.json();
-          setData(data);
-        } catch (error) {
-          setError(error);
-        } finally {
-          setIsLoading(false);
-        }
+  //   pizzaFetch();
+  // }, [url, options]);
+
+  const pizzaFetch = async (url: string, options?: ApiOptions) => {
+    if (url.length) {
+      setIsLoading(true);
+
+      try {
+        //let response;
+        // switch (method) {
+        //   case "GET":
+        //     response = await fetch(url);
+        //     break;
+        //   default:
+        //     response = await fetch(url, {
+        //       method,
+        //       body,
+        //     });
+        //     break;
+        // }
+        const response = await fetch(url, options);
+        const data = await response.json();
+        setData(data);
+      } catch (error) {
+        setError(error);
+      } finally {
+        setIsLoading(false);
       }
-    };
+    }
+  };
 
-    pizzaFetch();
-  }, [url, options]);
-
-  return { data, error, isLoading };
+  return { pizzaFetch, data, error, isLoading };
 
   // const pizzaFetch = async (url: string, method: HTTPMethods) => {
   //   if (url.length) {
