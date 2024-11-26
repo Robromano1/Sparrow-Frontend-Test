@@ -109,6 +109,7 @@ const CheckoutForm = () => {
       paymentMethod: "cash",
       type: "delivery",
     };
+    // TODO: Make paymentMethod and type dynamic
 
     handleSubmitRequest(requestData);
   };
