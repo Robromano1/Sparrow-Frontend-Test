@@ -24,19 +24,10 @@ interface ActionPayload {
   type: HiringFrontendTakeHomePizzaType;
 }
 
-// interface CheckoutPayload {
-//   checkout: boolean;
-// }
-
 interface Action {
   type: ActionType;
   payload: ActionPayload;
 }
-
-// interface CheckoutAction {
-//   type: ActionType;
-//   payload: CheckoutPayload;
-// }
 
 export const cartReducer = (
   state = cartInitialState,
@@ -44,7 +35,6 @@ export const cartReducer = (
 ): InitialCartState => {
   switch (action.type) {
     case "ADD_TO_CART":
-      console.log(action.payload);
       return {
         ...state,
         id: action.payload.id,

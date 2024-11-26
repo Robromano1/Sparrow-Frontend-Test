@@ -1,4 +1,4 @@
-import { FC, ReactNode, useEffect } from "react";
+import { FC, ReactNode } from "react";
 
 import { useCartContext } from "../Pages/Cart/cartContext";
 
@@ -7,12 +7,8 @@ interface SidebarProps {
 }
 
 const Sidebar: FC<SidebarProps> = ({ children }) => {
-  const { state, dispatch } = useCartContext();
+  const { state } = useCartContext();
   const { checkout } = state;
-
-  useEffect(() => {
-    console.log(state);
-  }, [state]);
 
   return (
     <>

@@ -1,4 +1,4 @@
-import { useState, useEffect, useCallback } from "react";
+import { useState, useEffect } from "react";
 
 import MenuItems from "./MenuItems";
 import MenuHeader from "./MenuHeader";
@@ -62,20 +62,17 @@ const Menu = () => {
   };
 
   const handleExcludedToppings = (e: React.ChangeEvent<HTMLInputElement>) => {
-    console.log("HANDLING EXCLUDED TOPPINGS");
     const topping = e.target.value;
     setSelectedToppings({ ...selectedToppings, [topping]: "none" });
     setExcludedToppings([...excludedToppings, topping]);
   };
 
   const handleNormalToppings = (e: React.ChangeEvent<HTMLInputElement>) => {
-    console.log("HANDLING NORMAL TOPPINGS");
     const topping = e.target.value;
     setSelectedToppings({ ...selectedToppings, [topping]: "normal" });
   };
 
   const handlePizzaSize = (e: React.ChangeEvent<HTMLInputElement>) => {
-    console.log(e.target);
     setPizzaSize(e.target.value);
   };
 
@@ -83,8 +80,6 @@ const Menu = () => {
     e: React.MouseEvent<HTMLButtonElement>,
     pizza: SpecialtyPizza
   ) => {
-    console.log("ADDING TO CART");
-    console.log(e.target);
     setModalOpen(false);
     dispatch({
       type: ActionType.ADD_TO_CART,
@@ -173,7 +168,6 @@ const Menu = () => {
                     <Toppings
                       key={index}
                       topping={topping}
-                      //id={selectedPizza.id}
                       type={"Extra"}
                       handleExtraToppings={handleExtraToppings}
                       handleExcludedToppings={handleExcludedToppings}
