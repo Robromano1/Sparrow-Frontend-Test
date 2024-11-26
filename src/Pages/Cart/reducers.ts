@@ -1,8 +1,5 @@
 import { cartInitialState, InitialCartState } from "./cartContext";
-import {
-  HiringFrontendTakeHomePizzaType,
-  HiringFrontendTakeHomePizzaSize,
-} from "../../types";
+import { HiringFrontendTakeHomePizzaType } from "../../types";
 
 enum ActionType {
   ADD_TO_CART = "ADD_TO_CART",
@@ -17,7 +14,7 @@ interface ActionPayload {
   description: string;
   extraToppings: string[];
   excludedToppings: string[];
-  size: HiringFrontendTakeHomePizzaSize;
+  size: string;
   checkout: boolean;
   quantity: number;
   totalPrice: number;

@@ -119,3 +119,17 @@ export type SpecialtyPizza = {
   description: string;
   price: Record<HiringFrontendTakeHomePizzaSize, number>;
 };
+
+interface SizePricing {
+  small: number;
+  medium: number;
+  large: number;
+}
+export interface SpecialtyPizzaItem {
+  id: string;
+  name: string;
+  group: string;
+  toppings: string[];
+  description: string;
+  price: SizePricing;
+}

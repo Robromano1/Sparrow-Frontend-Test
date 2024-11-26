@@ -9,6 +9,7 @@ interface ApiOptions {
 }
 
 interface ApiResponse {
+  // @ts-expect-error: Generic type
   data: T | null;
   isLoading: boolean;
   error: unknown | null;

@@ -8,13 +8,12 @@ import Button from "../../Components/Button";
 import Radio from "../../Components/Radio";
 import { useCustomFetch } from "../../Hooks/CustomFetch";
 import { MENU_OPTIONS, SIZE_OPTIONS } from "../../Constants";
-import { SpecialtyPizza } from "../../types";
+import { SpecialtyPizza, HiringFrontendTakeHomePizzaType } from "../../types";
 import { SpecialtyPizzaContext } from "./context";
 import { useCartContext } from "../Cart/cartContext";
 import { ActionType } from "../Cart/cartContext";
 import Sidebar from "../../Components/Sidebar";
 import CheckoutMain from "../Checkout/CheckoutMain";
-import { HiringFrontendTakeHomePizzaType } from "../../types";
 
 interface SelectedToppings {
   [toppingName: string]: string | undefined;
@@ -40,6 +39,7 @@ const Menu = () => {
 
   useEffect(() => {
     pizzaFetch(url);
+    // Find a better solution for this
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
@@ -84,10 +84,7 @@ const Menu = () => {
     setPizzaSize(e.target.value);
   };
 
-  const handleAddToCart = (
-    e: React.MouseEvent<HTMLButtonElement>,
-    pizza: SpecialtyPizza
-  ) => {
+  const handleAddToCart = (pizza: SpecialtyPizza) => {
     setModalOpen(false);
     dispatch({
       type: ActionType.ADD_TO_CART,
@@ -111,6 +108,7 @@ const Menu = () => {
       <div className="my-32 px-36 container mx-auto">
         <MenuHeader />
         <div className="flex flex-col">
+          {/* If loading then we can show a skeleton here or a loading indicator */}
           {!isLoading && (
             <SpecialtyPizzaContext.Provider value={specialtyPizzas}>
               <MenuItems
@@ -185,9 +183,7 @@ const Menu = () => {
                 1 {/* Todo: Add + and - to increment or decrement quantity */}
               </div>
               <Button
-                onClick={(e: React.MouseEvent<HTMLButtonElement>) =>
-                  handleAddToCart(e, selectedPizza)
-                }
+                onClick={() => handleAddToCart(selectedPizza)}
                 className="bg-black text-white  p-2 rounded-full mt-12 flex justify-center w-9/12"
                 tabIndex={-1}
               >

@@ -6,8 +6,8 @@ interface SelectedToppings {
   [toppingName: string]: string | undefined;
 }
 
-interface PizzaProps {
-  topping: string;
+export interface PizzaProps {
+  topping: any;
   type?: string;
   id?: string;
   index: number;

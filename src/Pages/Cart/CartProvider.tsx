@@ -4,8 +4,6 @@ import { cartInitialState } from "./cartContext";
 import { cartReducer } from "./reducers";
 import { CartContext } from "./cartContext";
 
-//const CartContext = createContext(undefined);
-
 interface CartProviderProps {
   children: ReactNode;
 }
