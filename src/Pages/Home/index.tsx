@@ -27,6 +27,7 @@ const Home = () => {
           {BUTTON_TEXT.ORDER_NOW}
         </Button>
       </div>
+      {/* Add image of a pizza here */}
     </>
   );
 };

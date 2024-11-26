@@ -1,11 +1,12 @@
 import { FC, ReactNode, ReactElement, MouseEventHandler } from "react";
 
 interface ButtonProps {
-  onClick: MouseEventHandler<HTMLButtonElement>;
   children: ReactNode;
+  onClick?: MouseEventHandler<HTMLButtonElement>;
   disabled?: boolean;
   className?: string;
   tabIndex?: number;
+  type?: "button" | "submit" | "reset" | undefined;
 }
 
 const Button: FC<ButtonProps> = ({
@@ -14,6 +15,7 @@ const Button: FC<ButtonProps> = ({
   disabled,
   className,
   tabIndex,
+  type,
 }): ReactElement => {
   return (
     <button
@@ -21,6 +23,7 @@ const Button: FC<ButtonProps> = ({
       disabled={disabled}
       className={className}
       tabIndex={tabIndex}
+      type={type}
     >
       {children}
     </button>

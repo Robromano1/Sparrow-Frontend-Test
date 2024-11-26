@@ -1,12 +1,6 @@
 import { FC, ReactElement, SetStateAction } from "react";
 import { SpecialtyPizza } from "../../types";
 
-// interface Item {
-//   name: string;
-//   description: string;
-//   id: string;
-// }
-
 interface MenuItemsProps {
   item: SpecialtyPizza;
   handleOpenModal: () => void;
