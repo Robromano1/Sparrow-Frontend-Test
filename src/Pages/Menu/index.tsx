@@ -43,6 +43,14 @@ const Menu = () => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
+  useEffect(() => {
+    if (state.checkout) {
+      document.body.classList.add("overflow-hidden");
+    } else {
+      document.body.classList.remove("overflow-hidden");
+    }
+  }, [state]);
+
   const handleOpenModal = () => {
     setModalOpen(true);
   };
@@ -97,14 +105,6 @@ const Menu = () => {
       },
     });
   };
-
-  useEffect(() => {
-    if (state.checkout) {
-      document.body.classList.add("overflow-hidden");
-    } else {
-      document.body.classList.remove("overflow-hidden");
-    }
-  }, [state]);
 
   return (
     <>
