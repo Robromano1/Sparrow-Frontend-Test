@@ -23,8 +23,8 @@ const CheckoutMain = () => {
             <h3 className="text-md font-bold mt-4">Extra Toppings: </h3>
           )}
           {extraToppings.length > 0 &&
-            extraToppings.map((topping) => (
-              <ul>
+            extraToppings.map((topping, index) => (
+              <ul key={`${topping}-${index}`}>
                 <li>{`Extra ${topping}`}</li>
               </ul>
             ))}
@@ -32,8 +32,8 @@ const CheckoutMain = () => {
             <h3 className="text-md font-bold mt-4">Exluded Toppings: </h3>
           )}
           {excludedToppings.length > 0 &&
-            excludedToppings.map((topping) => (
-              <ul>
+            excludedToppings.map((topping, index) => (
+              <ul key={`${topping}-${index}`}>
                 <li>{`No ${topping}`}</li>
               </ul>
             ))}

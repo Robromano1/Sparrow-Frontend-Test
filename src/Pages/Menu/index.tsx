@@ -182,7 +182,7 @@ const Menu = () => {
             <hr className="h-px my-8 bg-gray-200 border-0 dark:bg-gray-700"></hr>
             <div className="flex justify-between">
               <div className="bg-black text-white p-2 rounded-full mt-12 w-1/12 flex justify-center">
-                1
+                1 {/* Add + and - to increment or decrement quantity */}
               </div>
               <Button
                 onClick={(e: React.MouseEvent<HTMLButtonElement>) =>
