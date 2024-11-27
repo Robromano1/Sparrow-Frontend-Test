@@ -213,7 +213,7 @@ const CheckoutForm = () => {
         className="bg-white border border-black rounded-md p-2 outline-none"
       />
 
-      <div className="flex justify-around mt-32">
+      <div className="flex justify-around mt-24 mb-8">
         <Button
           type="submit"
           className="bg-white w-52 text-black p-2 rounded-lg border border-black hover:bg-black hover:text-white"

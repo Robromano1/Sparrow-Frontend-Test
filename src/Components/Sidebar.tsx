@@ -12,7 +12,7 @@ const Sidebar: FC<SidebarProps> = ({ children }) => {
 
   return (
     <>
-      <div className="relative h-screen overflow-hidden">
+      <div className="relative h-auto overflow-hidden">
         <div
           className={`top-0 right-0 fixed h-screen overflow-y-auto w-5/12 bg-white border border-l-2 border-l-gray ${
             checkout ? "translate-x-0" : "translate-x-full"
