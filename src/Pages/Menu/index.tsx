@@ -6,6 +6,7 @@ import Modal from "../../Components/Modal";
 import Toppings from "./Toppings";
 import Button from "../../Components/Button";
 import Radio from "../../Components/Radio";
+import MenuItemsSkeleton from "../../Components/MenuItemsSkeleton";
 import { useCustomFetch } from "../../Hooks/CustomFetch";
 import { MENU_OPTIONS, SIZE_OPTIONS } from "../../Constants";
 import { SpecialtyPizza, HiringFrontendTakeHomePizzaType } from "../../types";
@@ -108,7 +109,7 @@ const Menu = () => {
       <div className="my-32 px-36 container mx-auto">
         <MenuHeader />
         <div className="flex flex-col">
-          {/* If loading then we can show a skeleton here or a loading indicator */}
+          {isLoading && <MenuItemsSkeleton />}
           {!isLoading && (
             <SpecialtyPizzaContext.Provider value={specialtyPizzas}>
               <MenuItems
