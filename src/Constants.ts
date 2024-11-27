@@ -39,3 +39,7 @@ export const SIZE_OPTIONS = {
 export const CHECKOUT = {
   CHECKOUT: "Checkout",
 };
+
+export const ERROR_MESSAGES = {
+  PIZZA_SIZE: "Please select a pizza size",
+};

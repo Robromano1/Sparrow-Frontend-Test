@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 
 import MenuItems from "./MenuItems";
 import MenuHeader from "./MenuHeader";
@@ -8,7 +8,7 @@ import Button from "../../Components/Button";
 import Radio from "../../Components/Radio";
 import MenuItemsSkeleton from "../../Components/MenuItemsSkeleton";
 import { useCustomFetch } from "../../Hooks/CustomFetch";
-import { MENU_OPTIONS, SIZE_OPTIONS } from "../../Constants";
+import { MENU_OPTIONS, SIZE_OPTIONS, ERROR_MESSAGES } from "../../Constants";
 import { SpecialtyPizza, HiringFrontendTakeHomePizzaType } from "../../types";
 import { SpecialtyPizzaContext } from "./context";
 import { useCartContext } from "../Cart/cartContext";
@@ -21,6 +21,7 @@ interface SelectedToppings {
 }
 
 const Menu = () => {
+  const errorRef = useRef<HTMLDivElement>(null);
   const baseUrl = import.meta.env.VITE_API_BASE_URL;
   const url = `${baseUrl}/specialty-pizzas`;
   const { pizzaFetch, data, isLoading } = useCustomFetch();
@@ -34,6 +35,7 @@ const Menu = () => {
     {}
   );
   const [pizzaSize, setPizzaSize] = useState("");
+  const [error, setError] = useState(false);
 
   const { specialtyPizzas } = data;
   const { state, dispatch } = useCartContext();
@@ -83,9 +85,20 @@ const Menu = () => {
 
   const handlePizzaSize = (e: React.ChangeEvent<HTMLInputElement>) => {
     setPizzaSize(e.target.value);
+    setError(false);
   };
 
   const handleAddToCart = (pizza: SpecialtyPizza) => {
+    if (!pizzaSize) {
+      setError(true);
+      if (errorRef.current)
+        errorRef.current.scrollIntoView({
+          behavior: "smooth",
+          block: "center",
+        });
+      return;
+    }
+
     setModalOpen(false);
     dispatch({
       type: ActionType.ADD_TO_CART,
@@ -128,19 +141,24 @@ const Menu = () => {
             <hr className="h-px my-8 bg-gray-200 border-0 dark:bg-gray-700"></hr>
             <div>
               <h3 className="font-bold mb-4">{MENU_OPTIONS.SIZE}</h3>
-              <div className="flex">
+              <div className="flex" ref={errorRef}>
                 <Radio
                   quantity={SIZE_OPTIONS.SMALL}
-                  className="flex items-center justify-between hover:cursor-pointer hover:border hover:border-black p-2 w-40 peer-checked/small:border peer-checked/small:border-black peer-checked/small:bg-black peer-checked/small:text-white shadow-md rounded-lg px-4 mr-4"
+                  className={`flex items-center justify-between hover:cursor-pointer hover:border hover:border-black p-2 w-40 peer-checked/small:border peer-checked/small:border-black peer-checked/small:bg-black peer-checked/small:text-white shadow-md rounded-lg px-4 mr-4 ${
+                    error ? "border border-red-500 scroll-m-0" : ""
+                  }`}
                   additionalText={`$${selectedPizza.price.small}`}
                   onChangeHandler={handlePizzaSize}
                   checked={pizzaSize === "small"}
                   type="small"
                   name="small"
                 />
+
                 <Radio
                   quantity={SIZE_OPTIONS.MEDIUM}
-                  className="flex items-center justify-between hover:cursor-pointer hover:border hover:border-black p-2 w-40 peer-checked/medium:border peer-checked/medium:border-black peer-checked/medium:bg-black peer-checked/medium:text-white shadow-md rounded-lg px-4 mr-4"
+                  className={`flex items-center justify-between hover:cursor-pointer hover:border hover:border-black p-2 w-40 peer-checked/medium:border peer-checked/medium:border-black peer-checked/medium:bg-black peer-checked/medium:text-white shadow-md rounded-lg px-4 mr-4 ${
+                    error ? "border border-red-500" : ""
+                  }`}
                   additionalText={`$${selectedPizza.price.medium}`}
                   onChangeHandler={handlePizzaSize}
                   checked={pizzaSize === "medium"}
@@ -149,7 +167,9 @@ const Menu = () => {
                 />
                 <Radio
                   quantity={SIZE_OPTIONS.LARGE}
-                  className="flex items-center justify-between hover:cursor-pointer hover:border hover:border-black p-2 w-40 peer-checked/large:border peer-checked/large:border-black peer-checked/large:bg-black peer-checked/large:text-white shadow-md rounded-lg px-4 mr-4"
+                  className={`flex items-center justify-between hover:cursor-pointer hover:border hover:border-black p-2 w-40 peer-checked/large:border peer-checked/large:border-black peer-checked/large:bg-black peer-checked/large:text-white shadow-md rounded-lg px-4 mr-4 ${
+                    error ? "border border-red-500" : ""
+                  }`}
                   additionalText={`$${selectedPizza.price.large}`}
                   onChangeHandler={handlePizzaSize}
                   checked={pizzaSize === "large"}
@@ -157,6 +177,11 @@ const Menu = () => {
                   name="large"
                 />
               </div>
+              {error && (
+                <div className="mt-4 text-red-600 bg-red-200 w-56 rounded-md pl-4">
+                  {ERROR_MESSAGES.PIZZA_SIZE}
+                </div>
+              )}
             </div>
             <hr className="h-px my-8 bg-gray-200 border-0 dark:bg-gray-700"></hr>
             <div>
